@@ -9,7 +9,7 @@ function App() {
   return (
     <>  
       <NavBar/>
-      <ItemListConteiner/>  
+      <ItemListConteiner greeting="Bienvenidos a Libros Lema"/>  
     </>
   )
 }

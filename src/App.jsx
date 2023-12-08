@@ -9,8 +9,8 @@ function App() {
   return (
     <>  
       <NavBar/>
-      <ItemListConteiner greeting="Bienvenidos a Libros Lema"/>  
-      <ItemCount/>
+      <ItemListConteiner />
+      
     </>
   )
 }

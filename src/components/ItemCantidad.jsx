@@ -1,18 +1,29 @@
 import { useState } from 'react'
 import Boton from './Boton'
 
-const ItemCount = () => {
-    const [counter, setCounter] = useState(1)
+
+const ItemCantidad = () => {
+    const [cantidad, setCantidad] = useState(1)
+    
 
     const sumar = () =>{
-        setCounter (counter + 1)
+        setCantidad (cantidad + 1)
     }
 
     const restar = () =>{
-        if (counter>0){
-            setCounter(counter - 1)
+        if (cantidad>0){
+            setCounter(cantidad - 1)
         }
     }
+
+    const handleAgregar = () =>{
+        const itemToCart = {
+            ...item,
+            cantidad
+        }
+        console.log(itemToCart)
+    }
+
     return(
         <section className="flex gap-5">
             <div className="bg-fondo-header flex items-center gap-2">
@@ -21,12 +32,12 @@ const ItemCount = () => {
                 <Boton children="+" onClick={sumar}/>
             </div>
             <div>
-                <Boton children="Agregar al Carrito" />
+                <Boton children="Agregar al Carrito" onClick = {handleAgregar}/>
             </div>
         </section>
     )
 }
 
-export default ItemCount;
+export default ItemCantidad;
 
 

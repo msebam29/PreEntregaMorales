@@ -1,16 +1,21 @@
-import { useState } from 'react'
 import './App.css'
+import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer'
+import ItemListConteiner from './components/ItemListContainer/ItemListContainer'
 import NavBar from './components/NavBar/NavBar'
-import ItemListConteiner from './components/Catalogo/ItemListContainer'
-import ItemCount from './components/ItemCount'
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
 
 function App() {
   
   return (
-    <>  
-      <NavBar/>
-      <ItemListConteiner />
-      
+    <> 
+      <BrowserRouter>
+        <NavBar/>    
+        <Routes>
+          <Route path="/" element={<ItemListConteiner />} />
+          <Route path="/productos/:categoriaId" element={<ItemListConteiner />} />
+          <Route path="/item/:itemId" element={<ItemDetailContainer/>} />
+        </Routes>       
+      </BrowserRouter>       
     </>
   )
 }

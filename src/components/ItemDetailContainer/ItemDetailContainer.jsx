@@ -8,8 +8,9 @@ const ItemDetailContainer = ()=>{
     const [loading, setLoading] = useState (true)
     const [item, setItem] = useState (null)
 
-    const{itemId} = useParams()
-
+    const { itemId } = useParams()
+    console.log(itemId);
+    
     useEffect (()=>{
         setLoading(true)
 
@@ -23,7 +24,7 @@ const ItemDetailContainer = ()=>{
     return(
         <>
         {loading
-        ?<h2>Cargando...</h2>
+        ?<h2 className="text-center mt-20 text-azul-paleta font-bold text-xl">Cargando...</h2>
         :<ItemDetail item={item}/>
         }      
         </>

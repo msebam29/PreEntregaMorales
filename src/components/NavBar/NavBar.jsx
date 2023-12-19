@@ -9,10 +9,6 @@ const links = [
         href: "/",
     },
     {
-        label: "Ofertas",
-        href: "/libros/ofertas",
-    },
-    {
         label: "Juveniles",
         href: "/libros/juveniles",
     },

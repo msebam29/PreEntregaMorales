@@ -12,7 +12,7 @@ const ItemCantidad = () => {
 
     const restar = () =>{
         if (cantidad>0){
-            setCounter(cantidad - 1)
+            setCantidad(cantidad - 1)
         }
     }
 
@@ -25,10 +25,10 @@ const ItemCantidad = () => {
     }
 
     return(
-        <section className="flex gap-5">
-            <div className="bg-fondo-header flex items-center gap-2">
+        <section className="flex items-center gap-5 h-15">
+            <div className="bg-fondo-header flex items-center justify-center gap-2 h-12">
                 <Boton children="-" onClick={restar}/>
-                <p className=" mx-6 font-bold text-verde-lema">{counter}</p>          
+                <p className=" mx-5 font-bold text-verde-lema">{cantidad}</p>          
                 <Boton children="+" onClick={sumar}/>
             </div>
             <div>

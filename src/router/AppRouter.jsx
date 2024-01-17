@@ -21,10 +21,8 @@ const AppRouter = () => {
                 <Route path="/libros/:categoriaId" element={<ItemListConteiner />} />
                 <Route path="/item/:itemId" element={<ItemDetailContainer/>} />
                 <Route path="/cart" element={<CartView/>} />
-                {user.logged ? (
                 <Route path="/checkout" element={<Checkout/>} />
-                ) : (<Route path="/login" element={<LoginScreen/>} />)
-                }
+                <Route path="/login" element={<LoginScreen/>} />
             </Routes>       
         </BrowserRouter>  
     )

@@ -1,7 +1,6 @@
-/* import NavLink from './NavLink' */
 import CartWidget from './CartWidget'
 import logo from '../../assets/logo.webp'
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const links = [
     {
@@ -38,9 +37,9 @@ const NavBar = () =>{
                         </NavLink>
 
                     ))}
+                    <CartWidget />
                 </nav>
-                <CartWidget />
-            </div>
+            </div>            
         </header>
     )
 }

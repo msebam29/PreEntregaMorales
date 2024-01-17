@@ -10,19 +10,19 @@ const CartView = () => {
     const { cart, totalCart, clearCart, removeItem } = useContext(CartContext)
     const { user } = useContext (UserContext)
 
-    if (!user.email) return <h2>No existe el usuario</h2>
+    /* if (!user.email) return <h2>No existe el usuario</h2> */
     if (cart.length === 0) return <EmptyCart />
 
     return(
         <section className="container m-auto mt-8">
-            <p>Bienvenido: {user.email}</p>
+            {/* <p>Bienvenido: {user.email}</p> */}
             <h2 className="text-4xl font-semibold">Tu Compra</h2>
             <hr />
 
             <ul>
                 {cart.map((item) => (
                     <li key={item.id} clasName="flex gap-3 border-b my-4">
-                        <img src="{item.img]" alt="Cart img" className="w-32" />
+                        <img src={item.imagen} alt="Cart img" className="w-32" />
                         <div>
                             <h3>{item.nombre}</h3>
                             <p className="text-2xl font-bold">$ {item.precio * item.cantidad}</p>

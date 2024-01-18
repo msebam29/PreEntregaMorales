@@ -5,11 +5,11 @@ import Boton from "../Boton"
 
 const EmptyCart = () => {
     return (
-        <section className="container m-auto mt-8">
-        <h2 className="text-4xl font-semibold">Tu carrito está vacío</h2>
+        <section className="container m-auto mt-8 text-center">
+        <h2 className="text-4xl font-semibold text-azul-paleta">Tu carrito está vacío</h2>
         <hr />
-        <p>Agrega algún producto a tu carrito</p>
-        <Boton children={<Link to={"/"}>Volver</Link>}/>
+        <p className="mt-5 font-semibold text-azul-paleta">Agrega algún producto a tu carrito</p>
+        <Boton children={<Link to={"/"}>Volver</Link>} />
       </section>
     )
 }

@@ -16,14 +16,15 @@ const CartView = () => {
     return(
         <section className="container m-auto mt-8">
             {/* <p>Bienvenido: {user.email}</p> */}
-            <h2 className="text-4xl font-semibold">Tu Compra</h2>
+            <h2 className="text-4xl font-semibold text-azul-paleta text-center">Tu Compra</h2>
             <hr />
 
-            <ul>
+            <ul className="flex flex-col gap-4 border-b my-4">
                 {cart.map((item) => (
-                    <li key={item.id} clasName="flex gap-3 border-b my-4">
-                        <img src={item.imagen} alt="Cart img" className="w-32" />
-                        <div>
+                    
+                    <li key={item.id} className="flex gap-8 w-80">
+                        <img src={item.imagen} alt="Cart img" className="w-32 " />
+                        <div className="text-azul-paleta">
                             <h3>{item.nombre}</h3>
                             <p className="text-2xl font-bold">$ {item.precio * item.cantidad}</p>
                             <p>Cantidad: {item.cantidad}</p>
@@ -32,7 +33,7 @@ const CartView = () => {
                     </li>
                 ))}
             </ul>
-            <h4 className="text-4xl font-semibold">Total: ${totalCart()}</h4>
+            <h4 className="text-4xl font-semibold text-azul-paleta">Total: ${totalCart()}</h4>
             <Boton children="Vaciar Carrito" onClick={clearCart}/>
             <Boton children={<Link to="/checkout">Terminar mi compra</Link>}/>
         </section>

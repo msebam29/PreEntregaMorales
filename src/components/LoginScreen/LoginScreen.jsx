@@ -2,27 +2,27 @@ import { useContext } from "react";
 import { UserContext } from "../../context/UserContext";
 
 const LoginScreen = () => {
-    const { login, register, googleLogin } = useContext(UserContext)
+  const { login, register, googleLogin } = useContext(UserContext)
 
-    const [values, setValues] = useState({
-        email: "",
-        password: ""
+  const [values, setValues] = useState({
+    email: "",
+    password: "",
+  })
+
+  const handleInputChange = (e) => {
+    setValues({
+      ...values,
+      [e.target.name]: e.target.value,
     })
+  }
 
-    const handleInputChange = (e) =>{
-        setValues({
-            ...values,
-        [e.target.name]: e.target.value,
-        })
-    }
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    login(values)
+  }
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        login(values)
-    }
-
-    return(
-        <div className="login-container">
+  return (
+    <div className="login-container">
       <div className="p-8 rounded bg-white">
         <h2 className="text-2xl font-semibold w-80">Login</h2>
         <hr />
@@ -50,22 +50,16 @@ const LoginScreen = () => {
           </button>
         </form>
 
-        <button
-          onClick={() => register(values)}
-          className="bg-blue-500 text-white p-2 mt-4"
-        >
+        <button onClick={() => register(values)} className="bg-blue-500 text-white p-2 mt-4">
           Registrar
         </button>
-            <br/>
-        <button
-          onClick={googleLogin}
-          className="bg-blue-500 text-white p-2 mt-4"
-        >
+        <br />
+        <button onClick={googleLogin} className="bg-blue-500 text-white p-2 mt-4">
           Iniciar sesión con Google
         </button>
       </div>
     </div>
-    )
+  )
 }
 
 export default LoginScreen;

@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import NavBar from "../components/NavBar/NavBar";
 import ItemListContainer from "../components/ItemListContainer/ItemListContainer";
 import ItemDetailContainer from "../components/ItemDetailContainer/ItemDetailContainer";
@@ -15,15 +15,22 @@ const AppRouter = () => {
     return(
 
         <BrowserRouter>
-            <NavBar/>    
-            <Routes>
+            <NavBar/>
+            {user.logged ?(
+                <Routes>
                 <Route path="/" element={<ItemListContainer />} />
                 <Route path="/libros/:categoriaId" element={<ItemListContainer />} />
                 <Route path="/item/:itemId" element={<ItemDetailContainer/>} />
                 <Route path="/cart" element={<CartView/>} />
                 <Route path="/checkout" element={<Checkout/>} />
-                <Route path="/login" element={<LoginScreen/>} />
-            </Routes>       
+                <Route path= "*" element={<Navigate to={"/"}/>} /> 
+            </Routes>
+            ):(
+                <Routes>
+                    <Route path="/login" element={<LoginScreen/>} />
+                    <Route path= "*" element={<Navigate to={"/login"}/>} />
+                </Routes>
+            )}          
         </BrowserRouter>  
     )
 }

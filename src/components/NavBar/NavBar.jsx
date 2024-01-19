@@ -1,6 +1,9 @@
 import CartWidget from './CartWidget'
 import logo from '../../assets/logo.webp'
 import { NavLink } from "react-router-dom";
+import { useContext } from 'react';
+import { UserContext } from '../../context/UserContext';
+import Boton from '../Boton';
 
 const links = [
     {
@@ -21,17 +24,19 @@ const links = [
     },
 ]
 
-const NavBar = () =>{
-    return(
-        <header className= "bg-fondo-header">
+const NavBar = () => {
+    const { user, logout } = useContext(UserContext)
+
+    return (
+        <header className="bg-fondo-header">
             <div className='container m-auto py-5 flex justify-between items-center'>
-                <img className='w-60' src={logo} alt="logoLema"/>
+                <img className='w-60' src={logo} alt="logoLema" />
                 <nav className='flex gap-6'>
-                    {links.map((link)=>(
-                        <NavLink 
-                        key = {link.href} 
-                        to = {link.href}
-                        className="text-verde-lema text-lg font-semibold uppercase hover:text-hover"
+                    {links.map((link) => (
+                        <NavLink
+                            key={link.href}
+                            to={link.href}
+                            className="text-verde-lema text-lg font-semibold uppercase hover:text-hover"
                         >
                             {link.label}
                         </NavLink>
@@ -39,7 +44,11 @@ const NavBar = () =>{
                     ))}
                     <CartWidget />
                 </nav>
-            </div>            
+            </div>
+            {user.logged && <div className="flex gap-4 items-center container m-auto">
+                <p className="text-verde-lema">{user.email}</p>
+                <Boton onClick={logout}>Cerrar sesión</Boton>
+            </div>}
         </header>
     )
 }

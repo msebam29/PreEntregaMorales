@@ -10,28 +10,28 @@ import LoginScreen from "../components/LoginScreen/LoginScreen";
 
 
 const AppRouter = () => {
-    const { user } = useContext (UserContext);
+    const { user } = useContext(UserContext);
 
-    return(
+    return (
 
         <BrowserRouter>
-            <NavBar/>
-            {user.logged ?(
+            <NavBar />
+            {user.logged ? (
                 <Routes>
-                <Route path="/" element={<ItemListContainer />} />
-                <Route path="/libros/:categoriaId" element={<ItemListContainer />} />
-                <Route path="/item/:itemId" element={<ItemDetailContainer/>} />
-                <Route path="/cart" element={<CartView/>} />
-                <Route path="/checkout" element={<Checkout/>} />
-                <Route path= "*" element={<Navigate to={"/"}/>} /> 
-            </Routes>
-            ):(
-                <Routes>
-                    <Route path="/login" element={<LoginScreen/>} />
-                    <Route path= "*" element={<Navigate to={"/login"}/>} />
+                    <Route path="/" element={<ItemListContainer />} />
+                    <Route path="/libros/:categoriaId" element={<ItemListContainer />} />
+                    <Route path="/item/:itemId" element={<ItemDetailContainer />} />
+                    <Route path="/cart" element={<CartView />} />
+                    <Route path="/checkout" element={<Checkout />} />
+                    <Route path="*" element={<Navigate to={"/"} />} />
                 </Routes>
-            )}          
-        </BrowserRouter>  
+            ) : (
+                <Routes>
+                    <Route path="/login" element={<LoginScreen />} />
+                    <Route path="*" element={<Navigate to={"/login"} />} />
+                </Routes>
+            )}
+        </BrowserRouter>
     )
 }
 

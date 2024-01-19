@@ -2,6 +2,8 @@ import { useContext, useState } from "react";
 import { CartContext } from "../../context/CartContext";
 import { db } from "../../firebase/config";
 import { addDoc, collection, documentId, getDocs, query, where, writeBatch } from "firebase/firestore";
+import Boton from "../Boton";
+import Swal from "sweetalert2"
 
 const Checkout = () => {
   const { cart, totalCart, clearCart } = useContext(CartContext);
@@ -28,14 +30,12 @@ const Checkout = () => {
       cliente: values,
       items: cart,
       total: totalCart(),
-      fecha: new Date(),
     }
 
     const batch = writeBatch(db)
     const ordersRef = collection(db, "orders")
     const productsRef = collection(db, 'productos')
-    const itemsQuery = query(productsRef, where( documentId(), 'in', cart.map(prod => prod.id)))
-    console.log(cart.map(prod => prod.id))
+    const itemsQuery = query(productsRef, where(documentId(), 'in', cart.map(prod => prod.id)))
     const querySnapshot = await getDocs(itemsQuery)
 
     const outOfStock = []
@@ -60,56 +60,56 @@ const Checkout = () => {
             setOrderId(doc.id)
             clearCart()
 
-            return (<h2>¡¡Gracias por tu compra!!</h2>)
+            Swal.fire("Gracias por tu compra")
           })
         })
     } else {
-      return (<h2>Hay items sin stock</h2>)
+      Swal.fire("Gracias por tu compra")
     }
   }
+  console.log(orderId);
   if (orderId) {
     return (
-      <div className="container m-auto mt-10">
-        <h2 className="text-4xl font-semibold">Checkout</h2>
+      <div className="container m-auto mt-10 text-azul-paleta">
+        <h2 className="text-4xl font-semibold">Gracias por tu compra</h2>
         <hr />
-
-        <h4>Ingresa tus datos:</h4>
-        <form
-          onSubmit={handleSubmit}
-          className="flex flex-col gap-4 max-w-md mt-4"
-        >
-          <input
-            className="border p-2"
-            type="text"
-            placeholder="Nombre"
-            value={values.nombre}
-            onChange={handleInputChange}
-            name="nombre"
-          />
-
-          <input
-            className="border p-2"
-            type="text"
-            placeholder="Dirección"
-            value={values.direccion}
-            onChange={handleInputChange}
-            name="direccion"
-          />
-          <input
-            className="border p-2"
-            type="email"
-            placeholder="Email"
-            value={values.email}
-            onChange={handleInputChange}
-            name="email"
-          />
-          <button type="submit" className="bg-blue-500 text-white py-2">
-            Enviar
-          </button>
-        </form>
+        <p>Tu código de orden es: {orderId}</p>
       </div>
-    )
+    );
   }
+
+  return (
+    <div className="container m-auto mt-10">
+      <h2 className="text-4xl font-semibold">Checkout</h2>
+      <hr />
+
+      <h4>Ingresa tus datos:</h4>
+      <form onSubmit={handleSubmit} className="flex flex-col gap-4 max-w-md mt-4">
+        <input
+          className="border p-2"
+          type="text"
+          placeholder="Nombre"
+          value={values.nombre}
+          onChange={handleInputChange}
+          name="nombre" />
+        <input
+          className="border p-2"
+          type="text"
+          placeholder="Dirección"
+          value={values.direccion}
+          onChange={handleInputChange}
+          name="direccion" />
+        <input
+          className="border p-2"
+          type="email"
+          placeholder="Email"
+          value={values.email}
+          onChange={handleInputChange}
+          name="email" />
+        <Boton type="submit" children="Enviar" />
+      </form>
+    </div>
+  )
 }
 
 export default Checkout;

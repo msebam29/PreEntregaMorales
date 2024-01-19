@@ -1,5 +1,6 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { UserContext } from "../../context/UserContext";
+import Boton from "../Boton";
 
 const LoginScreen = () => {
   const { login, register, googleLogin } = useContext(UserContext)
@@ -22,9 +23,9 @@ const LoginScreen = () => {
   }
 
   return (
-    <div className="login-container">
+    <div className="container m-auto flex justify-center">
       <div className="p-8 rounded bg-white">
-        <h2 className="text-2xl font-semibold w-80">Login</h2>
+        <h2 className="text-2xl font-semibold w-80 text-center">Login</h2>
         <hr />
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-3 mt-4">
@@ -45,18 +46,15 @@ const LoginScreen = () => {
             name="password"
           />
 
-          <button type="submit" className="bg-blue-500 text-white py-2">
+          <Boton type="submit">
             Ingresar
-          </button>
+          </Boton>
         </form>
 
-        <button onClick={() => register(values)} className="bg-blue-500 text-white p-2 mt-4">
-          Registrar
-        </button>
+        <Boton onClick={() => register(values)} children="Registrar"/>
+        
         <br />
-        <button onClick={googleLogin} className="bg-blue-500 text-white p-2 mt-4">
-          Iniciar sesión con Google
-        </button>
+        <Boton onClick={googleLogin} children="Iniciar sesión con Google"/>
       </div>
     </div>
   )

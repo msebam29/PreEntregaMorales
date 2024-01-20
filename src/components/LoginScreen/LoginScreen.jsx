@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { UserContext } from "../../context/UserContext";
 import Boton from "../Boton";
+import { Link } from "react-router-dom";
 
 const LoginScreen = () => {
   const { login, register, googleLogin } = useContext(UserContext)
@@ -46,9 +47,7 @@ const LoginScreen = () => {
             name="password"
           />
 
-          <Boton type="submit">
-            Ingresar
-          </Boton>
+          <Boton type="submit" children={<Link to="/checkout">Ingresar</Link>}/>
         </form>
 
         <Boton onClick={() => register(values)} children="Registrar"/>

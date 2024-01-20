@@ -45,7 +45,7 @@ const NavBar = () => {
                     <CartWidget />
                 </nav>
             </div>
-            {user.logged && <div className="flex gap-4 items-center container m-auto">
+            {user.logged && <div className="flex gap-4 items-center justify-end container">
                 <p className="text-verde-lema">{user.email}</p>
                 <Boton onClick={logout}>Cerrar sesión</Boton>
             </div>}
